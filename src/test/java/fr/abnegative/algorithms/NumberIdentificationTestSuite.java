@@ -6,6 +6,5 @@ import org.junit.runner.RunWith;
 
 @RunWith(JUnitPlatform.class)
 @SelectPackages({ "fr.abnegative.algorithms.number.identification" })
-public class NumberIdentificationTests {
-
+public class NumberIdentificationTestSuite {
 }
