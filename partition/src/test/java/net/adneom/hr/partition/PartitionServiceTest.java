@@ -1,7 +1,10 @@
 package net.adneom.hr.partition;
 
 import static org.hamcrest.CoreMatchers.hasItem;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.empty;
+import static org.hamcrest.Matchers.hasItems;
+import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.lessThanOrEqualTo;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -9,9 +12,6 @@ import java.util.List;
 
 import org.hamcrest.MatcherAssert;
 import org.junit.Test;
-
-import net.adneom.hr.partition.PartitionService;
-import net.adneom.hr.partition.PartitionServiceImpl;
 
 /**
  * This class tests the PartitionService with the partition method.
