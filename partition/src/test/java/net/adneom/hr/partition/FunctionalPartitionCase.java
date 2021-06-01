@@ -1,6 +1,5 @@
 package net.adneom.hr.partition;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedHashMap;
@@ -8,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
 
+import org.eclipse.collections.impl.list.Interval;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
@@ -18,25 +18,13 @@ public interface FunctionalPartitionCase {
 
 	static final int MEDIUM_SIZE = 2000;
 	static final int LARGE_SIZE = 1000000;
-	static Map<Integer, List<Integer>> mapping = new LinkedHashMap<>(2);
+	static final Map<Integer, List<Integer>> mapping = new LinkedHashMap<>(2);
 
 	@BeforeAll
 	static void setup() {
 
-		mapping.put(MEDIUM_SIZE, inputListGeneration(MEDIUM_SIZE));
-		mapping.put(LARGE_SIZE, inputListGeneration(LARGE_SIZE));
-	}
-
-	static List<Integer> inputListGeneration(int size) {
-
-		List<Integer> inputList = new ArrayList<Integer>(size);
-
-		for (int i = 0; i < size; i++) {
-			inputList.add(i);
-		}
-
-		return inputList;
-
+		mapping.put(MEDIUM_SIZE, Interval.oneTo(MEDIUM_SIZE));
+		mapping.put(LARGE_SIZE, Interval.oneTo(LARGE_SIZE));
 	}
 
 	static Stream<Arguments> partition_whenNullOrEnptyInputList() {
