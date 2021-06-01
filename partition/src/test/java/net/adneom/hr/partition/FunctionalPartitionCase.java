@@ -3,7 +3,9 @@ package net.adneom.hr.partition;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -14,14 +16,27 @@ import org.junit.jupiter.params.provider.Arguments;
 @TestInstance(Lifecycle.PER_CLASS)
 public interface FunctionalPartitionCase {
 
-	static List<Integer> inputList = new ArrayList<Integer>(2000);
+	static final int MEDIUM_SIZE = 2000;
+	static final int LARGE_SIZE = 1000000;
+	static Map<Integer, List<Integer>> mapping = new LinkedHashMap<>(2);
 
 	@BeforeAll
 	static void setup() {
 
-		for (int i = 0; i < 2000; i++) {
+		mapping.put(MEDIUM_SIZE, inputListGeneration(MEDIUM_SIZE));
+		mapping.put(LARGE_SIZE, inputListGeneration(LARGE_SIZE));
+	}
+
+	static List<Integer> inputListGeneration(int size) {
+
+		List<Integer> inputList = new ArrayList<Integer>(size);
+
+		for (int i = 0; i < size; i++) {
 			inputList.add(i);
 		}
+
+		return inputList;
+
 	}
 
 	static Stream<Arguments> partition_whenNullOrEnptyInputList() {
@@ -49,10 +64,14 @@ public interface FunctionalPartitionCase {
 	}
 
 	static Stream<Arguments> partition_forsizeOf2_shouldReturn1000Lists() {
-		return Stream.of(Arguments.of(inputList, 2));
+		return Stream.of(Arguments.of(mapping.get(MEDIUM_SIZE), 2));
 	}
 
 	static Stream<Arguments> partition_forsizeOf3_shouldReturn667Lists() {
-		return Stream.of(Arguments.of(inputList, 3));
+		return Stream.of(Arguments.of(mapping.get(MEDIUM_SIZE), 3));
+	}
+
+	static Stream<Arguments> partition_forsizeOf3_shouldReturn333334Lists() {
+		return Stream.of(Arguments.of(mapping.get(LARGE_SIZE), 3));
 	}
 }

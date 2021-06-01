@@ -83,5 +83,16 @@ public abstract class AbstractPartitionTest implements FunctionalPartitionTest, 
 
 		MatcherAssert.assertThat(service.partition(inputList, subListSize), Matchers.hasSize(667));
 	}
+	
+	@Override
+	@DisplayName("Testing partition with inputList with 1000000 elements and subListSize of 3")
+	@ParameterizedTest
+	@MethodSource
+	public void partition_forsizeOf3_shouldReturn333334Lists(List<Integer> inputList, Integer subListSize) {
+
+		Assumptions.assumeTrue(subListSize == 3);
+
+		MatcherAssert.assertThat(service.partition(inputList, subListSize), Matchers.hasSize(333334));
+	}
 
 }

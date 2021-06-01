@@ -19,5 +19,7 @@ public interface FunctionalPartitionTest {
 	void partition_forsizeOf2_shouldReturn1000Lists(List<Integer> inputList, Integer subListSize);
 
 	void partition_forsizeOf3_shouldReturn667Lists(List<Integer> inputList, Integer subListSize);
+	
+	void partition_forsizeOf3_shouldReturn333334Lists(List<Integer> inputList, Integer subListSize);
 
 }

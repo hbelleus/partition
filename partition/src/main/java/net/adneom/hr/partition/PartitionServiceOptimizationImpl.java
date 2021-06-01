@@ -20,7 +20,10 @@ public class PartitionServiceOptimizationImpl implements PartitionService {
 
 			for (int i = 0; i < inputList.size(); i += subListSize) {
 
-				result.add(inputList.subList(i, i + subListSize - 1));
+				if (i + subListSize - 1 > inputList.size())
+					result.add(inputList.subList(i, inputList.size()));
+				else
+					result.add(inputList.subList(i, i + subListSize - 1));
 			}
 		}
 
