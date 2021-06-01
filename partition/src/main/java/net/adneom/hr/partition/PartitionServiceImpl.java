@@ -6,11 +6,12 @@ import java.util.Objects;
 
 public class PartitionServiceImpl implements PartitionService {
 
+	@Override
 	public List<List<Integer>> partition(List<Integer> inputList, Integer subListSize) {
 
 		final Integer outputListSize = this.calculateOutputListSize(inputList, subListSize);
 
-		// We initialize the outputList with its size calculated above
+		// We initialize the outputList with its size (calculated above)
 		List<List<Integer>> outputList = new ArrayList<>(outputListSize);
 
 		// We populate the output list with the required sub lists
